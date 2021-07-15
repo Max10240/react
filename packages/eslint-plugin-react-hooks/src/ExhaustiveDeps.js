@@ -27,7 +27,14 @@ export default {
         enableDangerousAutofixThisMayCauseInfiniteLoops: false,
         properties: {
           additionalHooks: {
-            type: 'string',
+            oneOf: [{
+            type: 'string'
+          }, {
+            type: 'object',
+            additionalProperties: {
+              type: 'number'
+            }
+          }],
           },
           enableDangerousAutofixThisMayCauseInfiniteLoops: {
             type: 'boolean',
@@ -61,11 +68,9 @@ export default {
   create(context) {
     // Parse the `additionalHooks` regex.
     const additionalHooks =
-      context.options &&
+      parseAdditionalHooks(context.options &&
         context.options[0] &&
-        context.options[0].additionalHooks
-        ? new RegExp(context.options[0].additionalHooks)
-        : undefined;
+        context.options[0].additionalHooks)
 
     const enableDangerousAutofixThisMayCauseInfiniteLoops =
       (context.options &&
@@ -1783,10 +1788,25 @@ function getReactiveHookCallbackIndex(calleeNode, options) {
             throw error;
           }
         }
-        return options.additionalHooks.test(name) ? 0 : -1;
+        return options.additionalHooks.callbackIndex(name)
       } else {
         return -1;
       }
+  }
+}
+
+function parseAdditionalHooks(optionValue) {
+  if (typeof optionValue === 'string') {
+    const regexp = new RegExp(optionValue)
+    return {
+      callbackIndex: (name) => regexp.test(name) ? 0 : -1
+    }
+  }
+
+  if (typeof optionValue === 'object') {
+    return {
+      callbackIndex: (name) => typeof optionValue[name] === 'number' ? optionValue[name] : -1
+    }
   }
 }
 
