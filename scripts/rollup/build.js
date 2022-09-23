@@ -727,6 +727,8 @@ async function buildEverything() {
   let bundles = [];
   // eslint-disable-next-line no-for-of-loops/no-for-of-loops
   for (const bundle of Bundles.bundles) {
+    if (bundle.global === 'ESLintPluginReactHooks') {
+
     bundles.push(
       [bundle, NODE_ES2015],
       [bundle, UMD_DEV],
@@ -745,6 +747,7 @@ async function buildEverything() {
       [bundle, RN_FB_PROD],
       [bundle, RN_FB_PROFILING]
     );
+    }
   }
 
   if (!shouldExtractErrors && process.env.CIRCLE_NODE_TOTAL) {
