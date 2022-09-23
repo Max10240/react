@@ -100,7 +100,7 @@ function isInsideComponentOrHook(node) {
   return false;
 }
 
-export default {
+module.exports = {
   meta: {
     type: 'problem',
     docs: {

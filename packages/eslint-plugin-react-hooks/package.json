@@ -1,17 +1,17 @@
 {
-  "name": "eslint-plugin-react-hooks",
+  "name": "@grncdr/eslint-plugin-react-hooks",
   "description": "ESLint rules for React Hooks",
   "version": "5.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/facebook/react.git",
+    "url": "https://github.com/grncdr/react.git",
     "directory": "packages/eslint-plugin-react-hooks"
   },
   "files": [
     "LICENSE",
     "README.md",
     "index.js",
-    "cjs"
+    "src"
   ],
   "keywords": [
     "eslint",
@@ -21,7 +21,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/facebook/react/issues"
+    "url": "https://github.com/grncdr/react/issues"
   },
   "engines": {
     "node": ">=10"
