@@ -8,7 +8,7 @@
 'use strict';
 
 const ESLintTester = require('eslint').RuleTester;
-const ReactHooksESLintPlugin = require('eslint-plugin-react-hooks');
+const ReactHooksESLintPlugin = require('@grncdr/eslint-plugin-react-hooks');
 const ReactHooksESLintRule = ReactHooksESLintPlugin.rules['exhaustive-deps'];
 
 /**
