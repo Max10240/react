@@ -320,7 +320,7 @@ export default {
             }
           } else if (typeof staticParts === 'object' && id.type === 'ObjectPattern') {
             // destructured object return where some properties are static
-            const property = id.properties.find(p => p.key === resolved.identifiers[0])
+            const property = id.properties.find(p => p.key?.name && p.key.name === resolved.identifiers[0]?.name)
             if (property) {
               return staticParts[property.key.name]
             }
